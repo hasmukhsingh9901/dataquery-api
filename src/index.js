@@ -11,7 +11,7 @@ const app = express();
 app.use(helmet());
 app.use(
   cors({
-    origin: env.NODE_ENV === "production" ? [""] : "*",
+    origin: env.NODE_ENV === "production" ? ["https://dataquery-api-u9y1.onrender.com/"] : "*",
   })
 );
 
@@ -27,6 +27,10 @@ app.use(morgan(env.NODE_ENV === "production" ? "combined" : "dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to the Data Query API!" });
+});
 app.post("/query", queryController.handleQuery);
 app.post("/explain", queryController.explainQuery);
 app.post("/validate", queryController.validateQuery);
