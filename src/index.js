@@ -28,9 +28,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to the Data Query API!" });
-});
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 app.post("/query", queryController.handleQuery);
 app.post("/explain", queryController.explainQuery);
 app.post("/validate", queryController.validateQuery);
